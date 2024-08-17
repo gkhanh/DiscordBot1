@@ -24,8 +24,10 @@ async def on_ready():
     print("Ready!")
     change_bot_status.start()
 
-with open("token.txt") as file:
-    TOKEN = file.read()
+# with open("token.txt") as file:
+#     TOKEN = file.read()
+
+TOKEN = "Insert token here"
 
 async def load():
     for filename in os.listdir("./cogs"):
