@@ -4,8 +4,14 @@ import os
 import asyncio
 from itertools import cycle
 import logging
+from dotenv import load_dotenv
 
 logging.basicConfig(level=logging.INFO)
+
+# Load environment variables from .env file
+load_dotenv()
+
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
 intents = discord.Intents.default()
 intents.members = True  # Enable this only if you need to access guild members
@@ -24,11 +30,6 @@ async def on_ready():
     print("Ready!")
     change_bot_status.start()
 
-# with open("token.txt") as file:
-#     TOKEN = file.read()
-
-TOKEN = "Insert token here"
-
 async def load():
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
@@ -38,6 +39,6 @@ async def load():
 async def main():
     async with bot:
         await load()
-        await bot.start(TOKEN)
+        await bot.start(DISCORD_TOKEN)
 
 asyncio.run(main())

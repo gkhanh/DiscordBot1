@@ -2,13 +2,14 @@ import discord
 from discord.ext import commands
 from random import choice, random
 import asyncpraw
+import os
 
 
 class Reddit(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.reddit = asyncpraw.Reddit(client_id = "xkuuKGMFgkUMgeuCM73DrQ",
-                                       client_secret = "CH1ucJ6a302Wkqeugi11I6UuEpD83g",
+        self.reddit = asyncpraw.Reddit(client_id = os.getenv("REDDIT_CLIENT_ID"),
+                                       client_secret = os.getenv("REDDIT_CLIENT_SECRET"),
                                        user_agent = "script:memeBot:v1.0 (by u/Gkhanh)")
 
     @commands.Cog.listener()
